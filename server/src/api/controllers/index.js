@@ -7,10 +7,8 @@ export {
     registerManager
 } from "./managerController"
 
-const logout = (req, res) => {
-    res.clearCookie('token');
-    res.json({
-        message: "Logout"
-    })
-}
-export { logout }
+export { 
+    login,
+    logout
+} from "./authenticationController"
+d
