@@ -7,8 +7,7 @@ export {
     registerManager
 } from "./managerController"
 
-export { 
+export {
     login,
     logout
 } from "./authenticationController"
-d
