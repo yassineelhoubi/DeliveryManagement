@@ -5,11 +5,15 @@ const router = express.Router();
 import {
     loginAdmin,
     logout,
-    CreateManager
+    CreateManager,
 } from "../controllers"
+
+import {
+    CreatUserValidator,
+} from "../middlewares"
 
 router.post("/login", loginAdmin)
 router.get("/logout", logout)
-router.post("/createManager", CreateManager)
+router.post("/createManager", CreatUserValidator, CreateManager)
 
 export { router }
