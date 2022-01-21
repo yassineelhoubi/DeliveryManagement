@@ -11,8 +11,6 @@ const Auth = (role = "") =>
         if (!payload) {
             return res.status(401).json({ error: "unauthenticated" });
         }
-        req.body.idSubAdmin = payload.subAdmin?.id;
-        req.idCategory = payload.manager?.idCategory;
         next();
     };
 
