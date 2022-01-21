@@ -4,7 +4,7 @@ export {
 } from "./adminController"
 
 export {
-    CreateManager
+    createManager
 } from "./managerController"
 
 export {

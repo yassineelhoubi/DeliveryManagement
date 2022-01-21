@@ -3,7 +3,7 @@ import Manager from "../models/Manager.js"
 import { createToken } from "../helpers";
 
 
-const CreateManager = (req, res) => {
+const createManager = (req, res) => {
 
    const { username, email, password } = req.body
    const role = "MANAGER"
@@ -31,4 +31,4 @@ const CreateManager = (req, res) => {
 
 
 
-export { CreateManager }
+export { createManager }

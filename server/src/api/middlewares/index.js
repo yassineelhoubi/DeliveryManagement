@@ -1,1 +1,2 @@
-export { CreatUserValidator } from "./CreatUserValidator"
+export { CreatUserValidator } from "./creatUserValidator"
+export { Auth } from "./auth"

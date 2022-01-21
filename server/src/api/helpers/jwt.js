@@ -24,28 +24,28 @@ export const createToken = (payload = null, role = null) => {
       return null;
   }
 };
-// verify tokens
-// export const verifyToken = (token = null, role = null) => {
-//   if (!token) return null;
-//   if (!role) return null;
-//   try {
-//     switch (role) {
-//       case "ADMIN":
-//         return jwt.verify(token, process.env.SECRET_KEY_ADMIN);
-//         break;
-//       case "MANAGER":
-//         return jwt.verify(token, process.env.SECRET_KEY_MANAGER);
-//         break;
-//       case "DELIVERY_MANAGER":
-//         return jwt.verify(token, process.env.SECRET_KEY_DELIVERY_MANAGER);
-//         break;
-//       case "DRIVER":
-//         return jwt.verify(token, process.env.SECRET_KEY_DRIVER);
-//         break;
-//       default:
-//         return null;
-//     }
-//   } catch (err) {
-//     return null;
-//   }
-// };
+
+export const verifyToken = (token = null, role = null) => {
+  if (!token) return null;
+  if (!role) return null;
+  try {
+    switch (role) {
+      case "ADMIN":
+        return jwt.verify(token, process.env.SECRET_KEY_ADMIN);
+        break;
+      case "MANAGER":
+        return jwt.verify(token, process.env.SECRET_KEY_MANAGER);
+        break;
+      case "DELIVERY_MANAGER":
+        return jwt.verify(token, process.env.SECRET_KEY_DELIVERY_MANAGER);
+        break;
+      case "DRIVER":
+        return jwt.verify(token, process.env.SECRET_KEY_DRIVER);
+        break;
+      default:
+        return null;
+    }
+  } catch (err) {
+    return null;
+  }
+};
