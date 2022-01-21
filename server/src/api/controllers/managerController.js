@@ -3,29 +3,32 @@ import Manager from "../models/Manager.js"
 import { createToken } from "../helpers";
 
 
-const registerManager = (req, res) => {
+const CreateManager = (req, res) => {
 
    const { username, email, password } = req.body
    const role = "MANAGER"
    const user = new User({ email, password, role });
-   user.save((err, result) => {
+   user.save((err, user) => {
       if (err) {
          return res.status(400).json(err)
       }
       const managerData = {
          username: username,
-         _id: result._id
+         _id: user._id
       }
       const manager = new Manager(managerData);
-      manager.save((err, result) => {
+      manager.save((err, manager) => {
          if (err) {
             return res.status(400).json({ err })
          }
-         res.json({ result })
+         res.json({ user, manager })
       })
    })
+   /*  */
 
 }
 
 
-export { registerManager }
+
+
+export { CreateManager }
