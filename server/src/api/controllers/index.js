@@ -16,7 +16,8 @@ export {
 export {
     createDriver,
     removeDriver,
-    getAllDrivers
+    getAllDrivers,
+    getDriver,
 } from "./driverController"
 
 export {

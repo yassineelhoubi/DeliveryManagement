@@ -4,7 +4,11 @@ const driverSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: true,
-  }
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
 }, {
   timestamps: true
 }, { collection: "drivers" });
