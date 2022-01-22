@@ -23,7 +23,7 @@ router.post("/createDeliveryManager", Auth("MANAGER"), CreatUserValidator, creat
 router.delete("/removeDeliveryManager/:id", Auth("MANAGER"), removeDeliveryManager)
 router.post("/createDriver", Auth("MANAGER"), CreatUserValidator, createDriver)
 router.delete("/removeDriver/:id", removeDriver)
-router.get("/getAllDrivers", getAllDrivers);//get all driver
-// router.get("/getDriver", getDriver);//get driver by id
+router.get("/getAllDrivers", getAllDrivers);//get all drivers
+router.get("/getDriver/:id", getDriver);//get a driver by id
 
 export { router }
