@@ -7,13 +7,16 @@ export {
     createManager,
     removeManager,
 } from "./managerController"
+
 export {
     createDeliveryManager,
     removeDeliveryManager,
-} from "./deliverymanagerController"
+} from "./deliveryManagerController"
+
 export {
     createDriver,
-    removeDriver
+    removeDriver,
+    getAllDrivers
 } from "./driverController"
 
 export {

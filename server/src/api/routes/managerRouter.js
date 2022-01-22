@@ -8,7 +8,8 @@ import {
     createDeliveryManager,
     removeDeliveryManager,
     createDriver,
-    removeDriver
+    removeDriver,
+    getAllDrivers
 } from "../controllers"
 import {
     CreatUserValidator,
@@ -21,5 +22,6 @@ router.post("/createDeliveryManager", Auth("MANAGER"), CreatUserValidator, creat
 router.delete("/removeDeliveryManager/:id", Auth("MANAGER"), removeDeliveryManager)
 router.post("/createDriver", Auth("MANAGER"), CreatUserValidator, createDriver)
 router.delete("/removeDriver/:id", removeDriver)
+router.get("/getAllDrivers", getAllDrivers)
 
 export { router }

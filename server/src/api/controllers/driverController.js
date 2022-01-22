@@ -54,4 +54,20 @@ const removeDriver = async (req, res) => {
     }
 }
 
-export { createDriver, removeDriver }
+const getAllDrivers = async (req, res) => {
+    try {
+        const docs = await User.find().where("role").equals("DRIVER")
+        res.status(200).json({
+            status: true,
+            message: docs
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            message: err.message
+        })
+    }
+}
+
+
+export { createDriver, removeDriver, getAllDrivers }
