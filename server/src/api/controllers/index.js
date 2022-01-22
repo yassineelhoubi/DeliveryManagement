@@ -11,6 +11,9 @@ export {
     createDeliveryManager,
     removeDeliveryManager,
 } from "./deliverymanagerController"
+export {
+    createDriver
+} from "./driverController"
 
 export {
     login,
