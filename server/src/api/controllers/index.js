@@ -8,7 +8,8 @@ export {
     removeManager,
 } from "./managerController"
 export {
-    createDeliveryManager
+    createDeliveryManager,
+    removeDeliveryManager,
 } from "./deliverymanagerController"
 
 export {

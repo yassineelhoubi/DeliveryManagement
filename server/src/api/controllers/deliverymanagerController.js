@@ -35,6 +35,26 @@ const createDeliveryManager = async (req, res) => {
     }
 }
 
+const removeDeliveryManager = async (req, res) => {
+    try {
+        const {
+            id,
+        } = req.params
+
+        await User.findOneAndRemove({ _id: id })
+        await DeliveryManager.findOneAndRemove({ _id: id })
+        res.status(200).json({
+            status: true,
+            message: "deleted successfuly"
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        })
+    }
+}
 export {
-    createDeliveryManager
+    createDeliveryManager,
+    removeDeliveryManager
 }
