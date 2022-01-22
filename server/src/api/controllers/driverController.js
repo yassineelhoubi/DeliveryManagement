@@ -33,4 +33,25 @@ const createDriver = async (req, res) => {
     }
 }
 
-export { createDriver }
+
+const removeDriver = async (req, res) => {
+    try {
+        const {
+            id,
+        } = req.params
+
+        await User.findOneAndRemove({ _id: id })
+        await Driver.findOneAndRemove({ _id: id })
+        res.status(200).json({
+            status: true,
+            message: "deleted successfuly"
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        })
+    }
+}
+
+export { createDriver, removeDriver }

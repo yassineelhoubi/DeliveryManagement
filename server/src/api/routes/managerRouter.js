@@ -7,7 +7,8 @@ import {
     logout,
     createDeliveryManager,
     removeDeliveryManager,
-    createDriver
+    createDriver,
+    removeDriver
 } from "../controllers"
 import {
     CreatUserValidator,
@@ -19,5 +20,6 @@ router.get("/logout", logout)
 router.post("/createDeliveryManager", Auth("MANAGER"), CreatUserValidator, createDeliveryManager)
 router.delete("/removeDeliveryManager/:id", Auth("MANAGER"), removeDeliveryManager)
 router.post("/createDriver", Auth("MANAGER"), CreatUserValidator, createDriver)
+router.delete("/removeDriver/:id", removeDriver)
 
 export { router }

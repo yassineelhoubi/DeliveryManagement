@@ -12,7 +12,8 @@ export {
     removeDeliveryManager,
 } from "./deliverymanagerController"
 export {
-    createDriver
+    createDriver,
+    removeDriver
 } from "./driverController"
 
 export {
