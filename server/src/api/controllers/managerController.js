@@ -27,8 +27,20 @@ const createManager = (req, res) => {
    /*  */
 
 }
+const removeManager = async (req, res) => {
+
+   const {
+      id,
+   } = req.params
+
+   await User.findOneAndRemove({ _id: id })
+   await Manager.findOneAndRemove({ _id: id })
+   res.status(200).json({
+      msg: "deleted with success"
+   })
+}
 
 
 
 
-export { createManager }
+export { createManager, removeManager }
