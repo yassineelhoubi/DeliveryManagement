@@ -7,6 +7,9 @@ export {
     createManager,
     removeManager,
 } from "./managerController"
+export {
+    createDeliveryManager
+} from "./deliverymanagerController"
 
 export {
     login,
