@@ -60,7 +60,39 @@ const removeDeliveryManager = async (req, res) => {
         })
     }
 }
+const getAllDeliveryManagers = async (req, res) => {
+    try {
+        const docs = await DeliveryManager.find().populate("user")
+        res.status(200).json({
+            status: true,
+            message: docs
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            message: err.message
+        })
+    }
+}
+
+const getDeliveryManager = async (req, res) => {
+    const id = req.params.id
+    try {
+        const docs = await DeliveryManager.findById({ _id: id }).populate("user")
+        res.status(200).json({
+            status: true,
+            message: docs
+        })
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            message: err.message
+        })
+    }
+}
 export {
     createDeliveryManager,
-    removeDeliveryManager
+    removeDeliveryManager,
+    getAllDeliveryManagers,
+    getDeliveryManager
 }

@@ -13,6 +13,8 @@ export {
 export {
     createDeliveryManager,
     removeDeliveryManager,
+    getAllDeliveryManagers,
+    getDeliveryManager,
 } from "./deliveryManagerController"
 
 export {
