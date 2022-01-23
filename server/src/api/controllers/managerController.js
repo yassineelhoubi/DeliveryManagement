@@ -93,5 +93,28 @@ const getManager = async (req, res) => {
    }
 }
 
+const UpdateManager = async (req, res) => {
+   try {
+      var id = req.params.id
+      if (req.body.username) {
+         const filter = { _id: id }
+         await Manager.findOneAndUpdate(filter, req.body);
+      }
+      if (req.body.email || req.body.password) {
+         const doc = await Manager.findById(id)
+         const filter = { _id: doc.user }
+         await User.findOneAndUpdate(filter, req.body)
+      }
+      res.status(200).json({
+         status: true,
+         message: "Updated successfuly"
+      })
+   } catch (e) {
+      res.status(400).json({
+         status: false,
+         message: e.message
+      })
+   }
+}
 
-export { createManager, removeManager, getAllManagers, getManager }
+export { createManager, removeManager, getAllManagers, getManager, UpdateManager }

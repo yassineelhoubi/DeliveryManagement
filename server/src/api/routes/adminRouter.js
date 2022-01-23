@@ -9,6 +9,7 @@ import {
     removeManager,
     getAllManagers,
     getManager,
+    UpdateManager,
     getAllVehicleType,
     addVehicleType,
     getVehicleType,
@@ -29,6 +30,7 @@ router.post("/createManager", Auth("ADMIN"), CreatUserValidator, createManager)
 router.delete("/removeManager/:id", Auth("ADMIN"), removeManager)
 router.get("/getAllManagers", getAllManagers)
 router.get("/getManager/:id", getManager)
+router.patch("/updateManager/:id", UpdateManager)
 
 // VEHICLE TYPE 
 router.get("/getAllVehicleType", getAllVehicleType);
