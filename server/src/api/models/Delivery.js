@@ -6,7 +6,7 @@ const deliverySchema = new mongoose.Schema({
     trim: true,
     required: true,
     enum: {
-      values: ['National', 'International', 'America', 'Asia', 'Australia'],
+      values: ['National', 'International'],
       message: 'is not supported'
     }
   },
@@ -14,9 +14,9 @@ const deliverySchema = new mongoose.Schema({
     type: String,
     trim: true,
     enum: {
-      values: ['Local', 'Europe', 'America', 'Asia', 'Australia'],
+      values: ['Europe', 'America', 'Asia', 'Australia'],
       message: 'is not supported'
-    }
+    },
   },
   weight: {
     type: Number,
