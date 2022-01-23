@@ -38,21 +38,27 @@ const createManager = async (req, res) => {
 
 const removeManager = async (req, res) => {
    try {
-      const {
-         id,
-      } = req.params
-
-      await User.findOneAndRemove({ _id: id })
-      await Manager.findOneAndRemove({ _id: id })
-      res.status(200).json({
-         status: true,
-         message: "deleted with success"
-      })
+       const { id } = req.params
+       const doc = await Manager.findById({ _id: id })//find the Driver
+       // check if exists
+       if (doc) {
+           // delete
+           await doc.remove()
+           res.status(200).json({
+               status: true,
+               message: "Deleted successfuly"
+           })
+       } else {
+           res.status(404).json({
+               status: false,
+               message: "Not Found"
+           })
+       }
    } catch (e) {
-      res.status(400).json({
-         status: false,
-         message: e.message
-      })
+       res.status(400).json({
+           status: false,
+           message: e.message
+       })
    }
 }
 
