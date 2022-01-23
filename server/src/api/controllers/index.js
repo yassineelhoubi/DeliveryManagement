@@ -25,6 +25,14 @@ export {
 } from "./driverController"
 
 export {
+    getVehicleType,
+    getAllVehicleType,
+    addVehicleType,
+    deleteVehicleType,
+    updateVehicleType
+} from "./vehicleTypeController";
+
+export {
     login,
     logout
 } from "./authenticationController"
