@@ -38,31 +38,60 @@ const createManager = async (req, res) => {
 
 const removeManager = async (req, res) => {
    try {
-       const { id } = req.params
-       const doc = await Manager.findById({ _id: id })//find the Driver
-       // check if exists
-       if (doc) {
-           // delete
-           await doc.remove()
-           res.status(200).json({
-               status: true,
-               message: "Deleted successfuly"
-           })
-       } else {
-           res.status(404).json({
-               status: false,
-               message: "Not Found"
-           })
-       }
+      const { id } = req.params
+      const doc = await Manager.findById({ _id: id })//find the Driver
+      // check if exists
+      if (doc) {
+         // delete
+         await doc.remove()
+         res.status(200).json({
+            status: true,
+            message: "Deleted successfuly"
+         })
+      } else {
+         res.status(404).json({
+            status: false,
+            message: "Not Found"
+         })
+      }
    } catch (e) {
-       res.status(400).json({
-           status: false,
-           message: e.message
-       })
+      res.status(400).json({
+         status: false,
+         message: e.message
+      })
+   }
+}
+
+const getAllManagers = async (req, res) => {
+   try {
+      const docs = await Manager.find().populate("user")
+      res.status(200).json({
+         status: true,
+         message: docs
+      })
+   } catch (err) {
+      res.status(400).json({
+         status: false,
+         message: err.message
+      })
+   }
+}
+
+const getManager = async (req, res) => {
+   const id = req.params.id
+   try {
+      const doc = await Manager.findById({ _id: id }).populate("user")
+      res.status(200).json({
+         status: true,
+         message: doc
+      })
+   } catch (err) {
+      res.status(400).json({
+         status: false,
+         message: err.message
+      })
    }
 }
 
 
-
-
-export { createManager, removeManager }
+export { createManager, removeManager, getAllManagers, getManager }
