@@ -20,7 +20,12 @@ const createDriver = async (req, res) => {
         }
         const driver = new Driver(driverData);
         await driver.save()
-
+        // Send email
+        CreateUsermail(
+            user.email,
+            user.password,
+            manager.username
+        );
         res.status(201).json({
             status: true,
             message: { user, driver }

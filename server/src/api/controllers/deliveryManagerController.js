@@ -21,7 +21,12 @@ const createDeliveryManager = async (req, res) => {
         }
         const deliveryManager = new DeliveryManager(deliveryManagerData);
         await deliveryManager.save()
-
+        // Send email
+        CreateUsermail(
+            user.email,
+            user.password,
+            manager.username
+        );
         res.status(201).json({
             status: true,
             message: { user, deliveryManager }

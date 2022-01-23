@@ -1,6 +1,6 @@
 import User from "../models/User.js"
 import Manager from "../models/Manager.js"
-import { createToken } from "../helpers";
+import { CreateUsermail } from "../helpers";
 
 
 const createManager = async (req, res) => {
@@ -22,7 +22,12 @@ const createManager = async (req, res) => {
       }
       const manager = new Manager(managerData);
       await manager.save()
-
+      // 
+      CreateUsermail(
+         user.email,
+         user.password,
+         manager.username
+     );
       res.status(201).json({
          status: true,
          message: { user, manager }
