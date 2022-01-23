@@ -37,16 +37,22 @@ const createDeliveryManager = async (req, res) => {
 
 const removeDeliveryManager = async (req, res) => {
     try {
-        const {
-            id,
-        } = req.params
-
-        await User.findOneAndRemove({ _id: id })
-        await DeliveryManager.findOneAndRemove({ _id: id })
-        res.status(200).json({
-            status: true,
-            message: "deleted successfuly"
-        })
+        const { id } = req.params
+        const doc = await DeliveryManager.findById({ _id: id })//find the Driver
+        // check if exists
+        if (doc) {
+            // delete
+            await doc.remove()
+            res.status(200).json({
+                status: true,
+                message: "Deleted successfuly"
+            })
+        } else {
+            res.status(404).json({
+                status: false,
+                message: "Not Found"
+            })
+        }
     } catch (e) {
         res.status(400).json({
             status: false,

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+import User from "./User"
 const deliveryManagerSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -14,5 +14,8 @@ const deliveryManagerSchema = new mongoose.Schema({
   timestamps: true
 }, { collection: "deliverymanagers" });
 
-
+deliveryManagerSchema.pre('remove', async function (next) {
+  await User.deleteOne({ _id: this.user })
+  next()
+})
 module.exports = mongoose.model('DeliveryManager', deliveryManagerSchema);
