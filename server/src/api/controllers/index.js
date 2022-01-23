@@ -16,6 +16,7 @@ export {
     removeDeliveryManager,
     getAllDeliveryManagers,
     getDeliveryManager,
+    UpdateDeliveryManager
 } from "./deliveryManagerController"
 
 export {
