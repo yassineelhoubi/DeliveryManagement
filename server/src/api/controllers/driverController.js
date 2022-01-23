@@ -91,11 +91,35 @@ const getDriver = async (req, res) => {
     }
 }
 
+const UpdateDriver = async (req, res) => {
+    try {
+        var id = req.params.id
+        if (req.body.username) {
+            const filter = { _id: id }
+            await Driver.findOneAndUpdate(filter, req.body);
+        }
+        if (req.body.email || req.body.password) {
+            const doc = await Driver.findById(id)
+            const filter = { _id: doc.user }
+            await User.findOneAndUpdate(filter, req.body)
+        }
+        res.status(200).json({
+            status: true,
+            message: "Updated successfuly"
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        })
+    }
+}
 
 
 export {
     createDriver,
     removeDriver,
     getAllDrivers,
-    getDriver
+    getDriver,
+    UpdateDriver
 }

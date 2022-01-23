@@ -23,6 +23,7 @@ export {
     removeDriver,
     getAllDrivers,
     getDriver,
+    UpdateDriver
 } from "./driverController"
 
 export {
