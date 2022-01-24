@@ -21,7 +21,7 @@ const createDriver = async (req, res) => {
         const driver = new Driver(driverData);
         await driver.save()
         // Send email
-        CreateUsermail(
+        CreateUserMail(
             user.email,
             user.password,
             manager.username
@@ -49,7 +49,7 @@ const removeDriver = async (req, res) => {
             await doc.remove()
             res.status(200).json({
                 status: true,
-                message: "Deleted successfuly"
+                message: "Deleted successfully"
             })
         } else {
             res.status(404).json({
@@ -110,7 +110,7 @@ const UpdateDriver = async (req, res) => {
         }
         res.status(200).json({
             status: true,
-            message: "Updated successfuly"
+            message: "Updated successfully"
         })
     } catch (e) {
         res.status(400).json({
