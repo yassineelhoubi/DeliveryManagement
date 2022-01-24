@@ -10,6 +10,10 @@ const driverSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  vehicleType: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'VehicleType',
+  },
 }, {
   timestamps: true
 }, { collection: "drivers" });
