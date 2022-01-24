@@ -8,7 +8,7 @@ const createDeliveryManager = async (req, res) => {
 
     try {
         const userData = {
-            role: "DELIVERYMANAGER",
+            role: "DELIVERY_MANAGER",
             email: email,
             password: password
         }
