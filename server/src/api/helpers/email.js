@@ -10,7 +10,7 @@ const mailGenerator = new Mailgen({
   },
 });
 
-const CreateUsermail = async (email, password, username) => {
+const CreateUserMail = async (email, password, username) => {
   const template = {
     body: {
       name: username,
@@ -45,4 +45,4 @@ const CreateUsermail = async (email, password, username) => {
   //   return info;
 };
 
-export { CreateUsermail };
+export { CreateUserMail };

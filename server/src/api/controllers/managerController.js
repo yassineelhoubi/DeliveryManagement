@@ -1,7 +1,7 @@
 import User from "../models/User.js"
 import Manager from "../models/Manager.js"
-import { CreateUsermail } from "../helpers";
-
+import { CreateUserMail } from "../helpers";
+const logger = require('../../config/winston');
 
 const createManager = async (req, res) => {
 
@@ -23,17 +23,18 @@ const createManager = async (req, res) => {
       const manager = new Manager(managerData);
       await manager.save()
       // 
-      CreateUsermail(
+      logger.info(`Manager: ${user.email} Created!`);
+      CreateUserMail(
          user.email,
          user.password,
          manager.username
-     );
+      );
       res.status(201).json({
          status: true,
          message: { user, manager }
       })
    } catch (e) {
-      console.log(e.message)
+      logger.error(e.message);
       res.status(400).json({
          status: false,
          message: e.message
@@ -49,9 +50,10 @@ const removeManager = async (req, res) => {
       if (doc) {
          // delete
          await doc.remove()
+         logger.info(`Manager: ${doc.email} removed!`);
          res.status(200).json({
             status: true,
-            message: "Deleted successfuly"
+            message: "Deleted successfully"
          })
       } else {
          res.status(404).json({
@@ -60,6 +62,7 @@ const removeManager = async (req, res) => {
          })
       }
    } catch (e) {
+      logger.error(e.message);
       res.status(400).json({
          status: false,
          message: e.message
@@ -75,6 +78,7 @@ const getAllManagers = async (req, res) => {
          message: docs
       })
    } catch (err) {
+      logger.error(e.message);
       res.status(400).json({
          status: false,
          message: err.message
@@ -91,6 +95,7 @@ const getManager = async (req, res) => {
          message: doc
       })
    } catch (err) {
+      logger.error(e.message);
       res.status(400).json({
          status: false,
          message: err.message
@@ -110,11 +115,13 @@ const UpdateManager = async (req, res) => {
          const filter = { _id: doc.user }
          await User.findOneAndUpdate(filter, req.body)
       }
+      logger.info(`Manager: ${doc.email} updated!`);
       res.status(200).json({
          status: true,
-         message: "Updated successfuly"
+         message: "Updated successfully",
       })
    } catch (e) {
+      logger.error(e.message);
       res.status(400).json({
          status: false,
          message: e.message
