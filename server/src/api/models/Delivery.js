@@ -46,9 +46,9 @@ const deliverySchema = new mongoose.Schema({
   status: {
     type: String,
     required: true,
-    default: "waitList",
+    default: "WaitList",
     enum: {
-      values: ['waitList', 'assigned', 'accepted', 'received'],
+      values: ['WaitList', 'Pending', 'Accepted', 'Received'],
       message: 'is not supported'
     }
   },

@@ -1,6 +1,6 @@
 import User from "../models/User.js"
 import DeliveryManager from "../models/DeliveryManager"
-
+import { CreateUserMail } from "../helpers";
 
 const createDeliveryManager = async (req, res) => {
 
@@ -25,7 +25,7 @@ const createDeliveryManager = async (req, res) => {
         CreateUserMail(
             user.email,
             user.password,
-            manager.username
+            deliveryManager.username
         );
         res.status(201).json({
             status: true,

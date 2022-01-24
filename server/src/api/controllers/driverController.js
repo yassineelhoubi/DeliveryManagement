@@ -1,9 +1,10 @@
 import User from "../models/User.js"
 import Driver from "../models/Driver.js"
+import { CreateUserMail } from "../helpers";
 
 const createDriver = async (req, res) => {
 
-    const { username, email, password } = req.body
+    const { username, email, password, vehicleType } = req.body
 
     try {
         const userData = {
@@ -17,6 +18,7 @@ const createDriver = async (req, res) => {
         const driverData = {
             username: username,
             user: user._id,
+            vehicleType: vehicleType
         }
         const driver = new Driver(driverData);
         await driver.save()
@@ -24,7 +26,7 @@ const createDriver = async (req, res) => {
         CreateUserMail(
             user.email,
             user.password,
-            manager.username
+            driver.username
         );
         res.status(201).json({
             status: true,
