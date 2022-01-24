@@ -32,8 +32,13 @@ export {
     getAllVehicleType,
     addVehicleType,
     deleteVehicleType,
-    updateVehicleType
+    updateVehicleType,
+    getIdVehicleTypeByType
 } from "./vehicleTypeController";
+
+export {
+    addDelivery
+} from "./deliveryController"
 
 export {
     login,

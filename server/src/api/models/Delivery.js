@@ -44,7 +44,7 @@ const deliverySchema = new mongoose.Schema({
     min: 0
   },
   status: {
-    type: Number,
+    type: String,
     required: true,
     default: "waitlist",
     enum: {
@@ -67,6 +67,6 @@ const deliverySchema = new mongoose.Schema({
 
 }, {
   timestamps: true
-},{collection:"deliveries"});
-module.exports = mongoose.model('Delivery',deliverySchema);
+}, { collection: "deliveries" });
+module.exports = mongoose.model('Delivery', deliverySchema);
 
