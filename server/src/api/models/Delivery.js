@@ -60,7 +60,7 @@ const deliverySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'VehicleType',
   },
-  CreatedBy: {
+  createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'DeliveryManager',
   }
