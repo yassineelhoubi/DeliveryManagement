@@ -100,7 +100,32 @@ const removeDelivery = async (req, res) => {
 
 };
 
+const getDelivery = async (req, res) => {
+    const id = req.params.id
+    try {
+        const doc = await Delivery.findById({ _id: id })
+        if (doc) {
+
+            res.status(200).json({
+                status: true,
+                message: doc
+            })
+        } else {
+            res.status(200).json({
+                status: false,
+                message: "Not Found"
+            })
+        }
+
+    } catch (err) {
+        res.status(400).json({
+            status: false,
+            message: err.message
+        })
+    }
+}
 export {
     addDelivery,
-    removeDelivery
+    removeDelivery,
+    getDelivery
 };
