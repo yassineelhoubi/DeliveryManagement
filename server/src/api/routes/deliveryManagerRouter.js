@@ -7,7 +7,8 @@ import {
     addDelivery,
     removeDelivery,
     getDelivery,
-    getAllDeliveries
+    getAllDeliveries,
+    updateDelivery
 } from "../controllers"
 import {
     Auth
@@ -21,6 +22,6 @@ router.post("/addDelivery", Auth("DELIVERY_MANAGER"), addDelivery)
 router.delete("/removeDelivery/:id", Auth("DELIVERY_MANAGER"), removeDelivery)
 router.get("/getDelivery/:id", Auth("DELIVERY_MANAGER"), getDelivery)
 router.get("/getAllDeliveries", Auth("DELIVERY_MANAGER"), getAllDeliveries)
-
+router.patch("/updateDelivery/:id", Auth("DELIVERY_MANAGER"), updateDelivery)
 
 export { router }

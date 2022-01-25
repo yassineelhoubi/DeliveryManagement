@@ -149,9 +149,49 @@ const getAllDeliveries = async (req, res) => {
     }
 }
 
+const updateDelivery = async (req, res) => {
+    try {
+        const id = req.params.id
+        const reqStatus = req.body.status
+        const doc = await Delivery.findById({ _id: id })
+        if (reqStatus == "Pending" && doc.status == "WaitList") {
+            await Delivery.updateOne({ _id: id }, req.body)
+            res.status(200).json({
+                status: true,
+                message: "Updated successfully"
+            })
+        } else if (reqStatus == "Accepted" && doc.status == "Pending") {
+            await Delivery.updateOne({ _id: id }, { status: reqStatus })
+            res.status(200).json({
+                status: true,
+                message: "Updated successfully"
+            })
+        } else if (reqStatus == "Received" && doc.status == "Accepted") {
+            await Delivery.updateOne({ _id: id }, { status: reqStatus })
+            res.status(200).json({
+                status: true,
+                message: "Updated successfully"
+            })
+        }
+        else {
+            res.status(404).json({
+                status: false,
+                message: "You Can't deleted"
+            })
+        }
+
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        })
+    }
+}
+
 export {
     addDelivery,
     removeDelivery,
     getDelivery,
-    getAllDeliveries
+    getAllDeliveries,
+    updateDelivery
 };

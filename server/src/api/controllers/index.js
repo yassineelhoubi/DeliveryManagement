@@ -40,7 +40,8 @@ export {
     addDelivery,
     removeDelivery,
     getDelivery,
-    getAllDeliveries
+    getAllDeliveries,
+    updateDelivery
 } from "./deliveryController"
 
 export {
