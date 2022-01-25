@@ -41,7 +41,7 @@ export {
     removeDelivery,
     getDelivery,
     getAllDeliveries,
-    updateDelivery
+    updateDeliveryStatus
 } from "./deliveryController"
 
 export {
