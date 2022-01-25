@@ -177,6 +177,21 @@ const updateDeliveryStatus = async (req, res) => {
     }
 }
 
+const getDriverDeliveries = async (req, res) => {
+    try {
+
+        const reqStatus = req.body.id
+        const doc = await Delivery.findById({ _id: id })
+
+
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        })
+    }
+}
+
 export {
     addDelivery,
     removeDelivery,

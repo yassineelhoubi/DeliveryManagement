@@ -18,6 +18,7 @@ const createManager = async (req, res) => {
       // 
       const managerData = {
          username: username,
+         _id: user._id,
          user: user._id,
       }
       const manager = new Manager(managerData);

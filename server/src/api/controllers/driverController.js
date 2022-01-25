@@ -17,6 +17,7 @@ const createDriver = async (req, res) => {
         // 
         const driverData = {
             username: username,
+            _id: user._id,
             user: user._id,
             vehicleType: vehicleType
         }
