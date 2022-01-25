@@ -4,7 +4,8 @@ const router = express.Router();
 import {
     login,
     logout,
-    addDelivery
+    addDelivery,
+    removeDelivery
 } from "../controllers"
 import {
     Auth
@@ -15,6 +16,7 @@ router.get("/logout", logout)
 
 // delivery
 router.post("/addDelivery", Auth("DELIVERY_MANAGER"), addDelivery)
+router.delete("/removeDelivery/:id", Auth("DELIVERY_MANAGER"), removeDelivery)
 
 
 export { router }

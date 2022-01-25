@@ -12,7 +12,6 @@ const Auth = (role = "") =>
             return res.status(401).json({ error: "unauthenticated" });
         }
         if (payload?.doc?.role == "DELIVERY_MANAGER") {
-            console.log("a")
             req.body.createdBy = payload.doc._id
         }
         next();

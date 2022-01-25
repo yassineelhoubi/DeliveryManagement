@@ -49,8 +49,6 @@ const addDelivery = async (req, res) => {
         additionalData.vehicleType = await getIdVehicleTypeByType("big truck")
     }
 
-
-
     Object.assign(deliveryDetails, additionalData);
 
     try {
@@ -67,6 +65,42 @@ const addDelivery = async (req, res) => {
     }
 };
 
+const removeDelivery = async (req, res) => {
+    // DELETE ONLY IF IN WaitList
+    try {
+        const { id } = req.params
+        const doc = await Delivery.findById({ _id: id })
+        if (doc) {
+            // delete
+            if (doc.status == "WaitList") {
+
+                await doc.remove()
+                res.status(200).json({
+                    status: true,
+                    message: "Deleted successfully"
+                })
+            } else {
+                res.status(404).json({
+                    status: false,
+                    message: "You Can't deleted"
+                })
+            }
+        } else {
+            res.status(404).json({
+                status: false,
+                message: "Not Found"
+            })
+        }
+    } catch (e) {
+        res.status(400).json({
+            status: false,
+            message: e.message
+        })
+    }
+
+};
+
 export {
-    addDelivery
+    addDelivery,
+    removeDelivery
 };

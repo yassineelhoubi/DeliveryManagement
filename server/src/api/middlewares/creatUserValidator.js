@@ -13,7 +13,7 @@ const CreatUserValidator = (req, res, next) => {
             min: 6,
             max: 10
         })
-        .withMessage('Password must between 6 and 10 Caracters')
+        .withMessage('Password must between 6 and 10 Characters')
     const errors = req.validationErrors()
     if (errors) {
         return res.status(400).json(errors)
