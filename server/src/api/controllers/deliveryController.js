@@ -164,7 +164,7 @@ const updateDeliveryStatus = async (req, res) => {
         console.log(ownDriverDelivery, doc.status, reqStatus)
         // Delivery status : Pending => Accepted && the driver shouldn't a delivery accepted
         if (doc.status == "Pending" && reqStatus == "Accepted" && !DriverDeliveryState) {
-            await Delivery.updateOne({ _id: id }, { status: reqStatus })
+            await Delivery.updateOne({ _id: id }, { status: reqStatus, driver: idDriver })
             res.status(201).json({
                 status: true,
                 message: "Updated Successfully"
