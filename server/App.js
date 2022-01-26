@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/admin", adminRouter);
 app.use("/api/manager", managerRouter);
 app.use("/api/deliveryManager", deliveryManagerRouter);
-app.use("/api/driver", deliveryManagerRouter);
+app.use("/api/driver", driver);
 
 app.listen(port, () => {
   console.log(`Running on http://${host}:${port}`);

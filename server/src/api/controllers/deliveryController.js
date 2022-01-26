@@ -153,19 +153,35 @@ const updateDeliveryStatus = async (req, res) => {
     try {
         const id = req.params.id
         const reqStatus = req.body.status
+        const idDriver = req.body.idDriver
+        // get Delivery by id
         const doc = await Delivery.findById({ _id: id })
-        if (reqStatus == "Pending" && doc.status == "WaitList" || reqStatus == "Accepted" && doc.status == "Pending"
-            || reqStatus == "Received" && doc.status == "Accepted") {
+
+        // check if the Driver had an accepted delivery 
+        const DriverDeliveryState = await Delivery.exists({ driver: idDriver, status: "Accepted" });
+        // check if this Delivery Accepted by the authenticated driver
+        const ownDriverDelivery = await Delivery.exists({ _id: id, driver: idDriver, status: "Accepted" })
+        console.log(ownDriverDelivery, doc.status, reqStatus)
+        // Delivery status : Pending => Accepted && the driver shouldn't a delivery accepted
+        if (doc.status == "Pending" && reqStatus == "Accepted" && !DriverDeliveryState) {
             await Delivery.updateOne({ _id: id }, { status: reqStatus })
-            res.status(200).json({
+            res.status(201).json({
                 status: true,
-                message: "Updated successfully"
+                message: "Updated Successfully"
+            })
+        }
+        // Delivery status : Accepted => Received && this Delivery Accepted by the authenticated driver
+        else if (doc.status == "Accepted" && reqStatus == "Received" && ownDriverDelivery) {
+            await Delivery.updateOne({ _id: id }, { status: reqStatus })
+            res.status(201).json({
+                status: true,
+                message: "Updated Successfully"
             })
         }
         else {
-            res.status(404).json({
+            res.status(200).json({
                 status: false,
-                message: "You Can't deleted"
+                message: "Cannot update"
             })
         }
 
@@ -177,20 +193,6 @@ const updateDeliveryStatus = async (req, res) => {
     }
 }
 
-const getDriverDeliveries = async (req, res) => {
-    try {
-
-        const reqStatus = req.body.id
-        const doc = await Delivery.findById({ _id: id })
-
-
-    } catch (e) {
-        res.status(400).json({
-            status: false,
-            message: e.message
-        })
-    }
-}
 
 export {
     addDelivery,

@@ -13,6 +13,8 @@ const Auth = (role = "") =>
         }
         if (payload?.doc?.role == "DELIVERY_MANAGER") {
             req.body.createdBy = payload.doc._id
+        } else if (payload?.doc?.role == "DRIVER") {
+            req.body.idDriver = payload.doc._id
         }
         next();
     };

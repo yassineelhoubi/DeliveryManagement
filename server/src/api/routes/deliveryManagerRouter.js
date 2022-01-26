@@ -8,7 +8,6 @@ import {
     removeDelivery,
     getDelivery,
     getAllDeliveries,
-    updateDeliveryStatus
 } from "../controllers"
 import {
     Auth
@@ -22,6 +21,5 @@ router.post("/addDelivery", Auth("DELIVERY_MANAGER"), addDelivery)
 router.delete("/removeDelivery/:id", Auth("DELIVERY_MANAGER"), removeDelivery)
 router.get("/getDelivery/:id", Auth("DELIVERY_MANAGER"), getDelivery)
 router.get("/getAllDeliveries", Auth("DELIVERY_MANAGER"), getAllDeliveries)
-router.patch("/updateDeliveryStatus/:id", Auth("DELIVERY_MANAGER"), updateDeliveryStatus)
 
 export { router }
