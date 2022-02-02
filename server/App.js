@@ -1,5 +1,6 @@
 import express from "express";
 require("dotenv").config();
+import cors from "cors";
 import expressvalidator from "express-validator";
 import cookieParser from "cookie-parser";
 import connectDB from "./src/config/db"
@@ -11,7 +12,7 @@ const port = process.env.port;
 
 const app = express();
 
-
+app.use(cors())
 app.use(express.json());
 app.use(expressvalidator());
 app.use(cookieParser());
