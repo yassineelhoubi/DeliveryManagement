@@ -10,13 +10,13 @@ const login = async (req, res) => {
     try {
         const doc = await User.findOne({ email })
         if (!doc) {
-            return res.status(400).json({
+            return res.status(404).json({
                 isLogged: false,
                 error: 'User not Found with this email@'
             })
         }
         if (!doc.authenticate(password)) {
-            return res.status(401).json({
+            return res.status(404).json({
                 isLogged: false,
                 error: 'Email and Password dont Match !'
             })

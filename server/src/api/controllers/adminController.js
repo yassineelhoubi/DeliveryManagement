@@ -11,13 +11,13 @@ const loginAdmin = (req, res) => {
         email
     }, (err, admin) => {
         if (err || !admin) {
-            return res.status(400).json({
+            return res.status(404).json({
                 isLogged: false,
                 error: 'User not Found with this email@'
             })
         }
         if (!admin.authenticate(password)) {
-            return res.status(401).json({
+            return res.status(404).json({
                 isLogged: false,
                 error: 'Email and Password dont Match !'
             })
