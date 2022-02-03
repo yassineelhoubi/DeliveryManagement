@@ -3,8 +3,6 @@ const router = express.Router();
 
 
 import {
-    login,
-    logout,
     createDeliveryManager,
     removeDeliveryManager,
     getAllDeliveryManagers,
@@ -21,8 +19,6 @@ import {
     Auth
 } from "../middlewares"
 
-router.post("/login", login)
-router.get("/logout", logout)
 // DeliveryManager
 router.post("/createDeliveryManager", CreatUserValidator, createDeliveryManager);
 router.delete("/removeDeliveryManager/:id", removeDeliveryManager);
