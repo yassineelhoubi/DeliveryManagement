@@ -103,10 +103,10 @@ const getManager = async (req, res) => {
       const doc = await Manager.findById({ _id: id }).populate("user")
       res.status(200).json({
          status: true,
-         message: doc
+         message: { username: doc.username, createdAt: doc.createdAt, updatedAt: doc.updatedAt, email: doc.user.email }
       })
    } catch (err) {
-      logger.error(e.message);
+      logger.error(err.message);
       res.status(400).json({
          status: false,
          message: err.message
@@ -125,8 +125,8 @@ const UpdateManager = async (req, res) => {
          const doc = await Manager.findById(id)
          const filter = { _id: doc.user }
          await User.findOneAndUpdate(filter, req.body)
+         logger.info(`Manager: ${doc.email} updated!`);
       }
-      logger.info(`Manager: ${doc.email} updated!`);
       res.status(200).json({
          status: true,
          message: "Updated successfully",
