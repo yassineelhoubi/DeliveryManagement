@@ -44,5 +44,33 @@ const CreateUserMail = async (email, password, username) => {
   });
   //   return info;
 };
+const assignDeliveryMail = async (email, username) => {
+  const template = {
+    body: {
+      name: username,
+      intro: "We have a new delivery for you, Be the first and get it",
+      outro:
+        "Need help, or have questions? Just reply to this email, we'd love to help.",
+    },
+  };
 
-export { CreateUserMail };
+  const transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
+    service: "Gmail",
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+  });
+  const info = await transporter.sendMail({
+    from: '"MarocShip" <no-reply@gmail.com>',
+    to: email,
+    subject: "MarocShip Authentication",
+    text: "MarocShip",
+    html: mailGenerator.generate(template),
+  });
+  //   return info;
+};
+export { CreateUserMail, assignDeliveryMail };
