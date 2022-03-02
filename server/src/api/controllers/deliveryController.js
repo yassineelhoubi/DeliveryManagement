@@ -1,6 +1,7 @@
 import Delivery from "../models/Delivery.js";
+import Driver from "../models/Driver.js";
 import {
-    getDistance
+    getDistance, assignDeliveryMail
 } from "../helpers/";
 import {
     getIdVehicleTypeByType
@@ -192,6 +193,43 @@ const updateDeliveryStatus = async (req, res) => {
         })
     }
 }
+const assignDelivery = async (req, res) => {
+    const {
+        id,
+    } = req.params
+    const delivery = await Delivery.findOne({ _id: id }).populate("createdBy").populate("vehicleType")
+    const drivers = await Driver.find({ vehicleType: delivery.vehicleType._id }).populate("user")
+
+    if (drivers.length != 0) {
+        let sendMail = true
+        await drivers.forEach(async (element) => {
+
+            const alreadyTakeDelivery = await Delivery.exists({ driver: element._id, status: "Accepted" })
+            if (!alreadyTakeDelivery) {
+                if (sendMail) {
+                    Delivery.updateOne({ _id: id }, { status: "Pending" })
+                }
+                sendMail = false
+                assignDeliveryMail(
+                    element.user.email,
+                    element.user.username
+                );
+            }
+        });
+        res.status(200).json({
+            status: true,
+            msg: "This delivery is assigned now"
+        })
+
+
+    } else {
+        res.status(400).json({
+            status: false,
+            msg: "No Driver available now. Check it later"
+        })
+    }
+
+}
 
 
 export {
@@ -199,5 +237,6 @@ export {
     removeDelivery,
     getDelivery,
     getAllDeliveries,
-    updateDeliveryStatus
+    updateDeliveryStatus,
+    assignDelivery
 };
